@@ -10,16 +10,6 @@ Repository GitOps per il cluster k3s dell'homeserver.
 - Uptime Kuma
 - Headlamp
 
-### Docker media stack esterno al cluster
-- Jellyfin
-- Jellyseerr
-- Radarr
-- Sonarr
-- Prowlarr
-- qBittorrent
-- Homepage
-- Portainer
-
 ## Accessi
 
 I servizi sono esposti solo tramite rete privata Tailscale.
