@@ -1,0 +1,5 @@
+
+# OpenTofu / Terraform local state
+*.tfstate
+*.tfstate.*
+.terraform/
