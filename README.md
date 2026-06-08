@@ -38,6 +38,16 @@ I servizi sono esposti solo tramite rete privata Tailscale.
 | Homelab Status | 31001 |
 | Headlamp | 31002 |
 
+
+## TLS e cert-manager
+
+Il cluster usa `cert-manager` per la gestione automatica dei certificati TLS sugli Ingress Kubernetes.
+
+`cert-manager` è installato tramite OpenTofu usando Helm provider, mentre il `ClusterIssuer` viene gestito come risorsa Kubernetes dichiarativa tramite OpenTofu.
+
+Attualmente è configurato un `ClusterIssuer` self-signed:
+
+
 ## Struttura repository
 
 ```text
