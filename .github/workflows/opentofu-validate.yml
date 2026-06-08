@@ -1,0 +1,38 @@
+name: OpenTofu Validate
+
+on:
+  push:
+    paths:
+      - "terraform/**"
+      - ".github/workflows/opentofu-validate.yml"
+  pull_request:
+    paths:
+      - "terraform/**"
+      - ".github/workflows/opentofu-validate.yml"
+
+jobs:
+  validate:
+    name: Validate OpenTofu
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: terraform/bootstrap
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: latest
+
+      - name: Check formatting
+        run: tofu fmt -check -recursive
+
+      - name: Initialize OpenTofu
+        run: tofu init -backend=false
+
+      - name: Validate OpenTofu configuration
+        run: tofu validate
