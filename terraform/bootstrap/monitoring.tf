@@ -21,6 +21,11 @@ resource "helm_release" "kube_prometheus_stack" {
       }
 
       prometheus = {
+        service = {
+          type     = "NodePort"
+          nodePort = 31090
+        }
+
         prometheusSpec = {
           retention = "7d"
 
