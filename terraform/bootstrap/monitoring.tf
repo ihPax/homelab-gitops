@@ -14,7 +14,9 @@ resource "helm_release" "kube_prometheus_stack" {
         adminPassword = "admin"
 
         service = {
-          type = "ClusterIP"
+          type     = "NodePort"
+          nodePort = 31030
+
         }
       }
 
