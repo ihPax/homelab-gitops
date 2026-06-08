@@ -1,0 +1,35 @@
+name: Kubernetes Manifests Validate
+
+on:
+  push:
+    paths:
+      - "apps/**"
+      - "argocd/**"
+      - ".github/workflows/kubernetes-validate.yml"
+  pull_request:
+    paths:
+      - "apps/**"
+      - "argocd/**"
+      - ".github/workflows/kubernetes-validate.yml"
+
+jobs:
+  validate:
+    name: Validate Kubernetes manifests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup kubeconform
+        uses: bmuschko/setup-kubeconform@v1
+        with:
+          version: latest
+
+      - name: Validate Kubernetes manifests
+        run: |
+          kubeconform \
+            -summary \
+            -strict \
+            -ignore-missing-schemas \
+            apps argocd
